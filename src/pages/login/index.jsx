@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { FaEye, FaEyeSlash, FaLock, FaUser } from "react-icons/fa";
@@ -5,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { auth } from "../../config/firebase";
 
 const LoginPage = () => {
+ 
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -26,7 +28,7 @@ const LoginPage = () => {
 
     if (!formData.password) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 8) {
+    } else if (formData.password.length < 0) {
       newErrors.password = "Password must be at least 8 characters";
     }
 
@@ -36,48 +38,85 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      setIsLoading(true);
-      try {
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log("Login successful", formData);
-      } catch (error) {
-        console.error("Login failed", error);
-      } finally {
-        setIsLoading(false);
+    if (!validateForm()) return;
+  
+    setIsLoading(true);
+    try {
+      console.log("Sending request with data:", {
+        email: formData.username,
+        password: formData.password,
+      });
+  
+      const response = await fetch("https://localhost:7217/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Account: formData.username, // Kiểm tra xem backend có yêu cầu email thay vì username không
+          password: formData.password,
+        }),
+      });
+  
+      console.log("Raw response:", response);
+  
+      const data = await response.json();
+      console.log("Response data:", data);
+  
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
       }
+  
+      console.log("Login successful:", data);
+      localStorage.setItem("token", data.token);
+      // window.location.href = "/dashboard"; // Chuyển hướng nếu cần
+    } catch (error) {
+      console.error("Login failed:", error.message);
+      setErrors({ general: error.message });
+    } finally {
+      setIsLoading(false);
     }
   };
+  
+  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === "checkbox" ? checked : value, 
+   
     }));
   };
 
-  const handleLoginGoogle = () => {
-    console.log("login google...");
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const token = result.user.accessToken;
-        const user = result.user;
 
-        console.log(user);
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+ 
+  const handleLoginGoogle = async () => {
+    console.log("Login with Google...");
+  
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const idToken = await result.user.getIdToken(); // Lấy idToken từ Firebase
+  
+      console.log("User:", result.user);
+      console.log("ID Token:", idToken);
+  
+      // Gửi idToken lên backend để xác thực
+      const response = await fetch("https://localhost:7155/api/Login/signin-google", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idToken }), // Gửi idToken lên backend
       });
+  
+      const data = await response.json();
+      console.log("Server response:", data);
+  
+    } catch (error) {
+      console.error("Google login error:", error.message);
+    }
   };
 
   return (
@@ -86,7 +125,7 @@ const LoginPage = () => {
         <div>
           <img
             className="mx-auto h-12 w-auto"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+            src=".vite/hau.jpg"
             alt="Logo"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -228,15 +267,7 @@ const LoginPage = () => {
               {isLoading ? "Signing in..." : "Sign in"}
             </button>
 
-            <p className="mt-4 text-center text-sm text-gray-600">
-              Don't have an account?{" "}
-              <a
-                href="/register"
-                className="font-medium text-blue-600 hover:text-blue-500"
-              >
-                Register here
-              </a>
-            </p>
+           
           </div>
 
           <div className="relative">
