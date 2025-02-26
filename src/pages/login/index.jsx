@@ -47,7 +47,7 @@ const LoginPage = () => {
         password: formData.password,
       });
   
-      const response = await fetch("https://localhost:7217/api/auth/login", {
+      const response = await fetch("https://localhost:7217/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,7 +103,7 @@ const LoginPage = () => {
       console.log("ID Token:", idToken);
   
       // Gửi idToken lên backend để xác thực
-      const response = await fetch("https://localhost:7155/api/Login/signin-google", {
+      const response = await fetch("https://localhost:7217/api/login/signin-google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

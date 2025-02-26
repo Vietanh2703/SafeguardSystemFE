@@ -5,14 +5,13 @@ import { getAuth } from "firebase/auth";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAc-g3kLguUfx8X2zOgNHF5onE_QcOoaf0",
-    authDomain: "heso-hrm.firebaseapp.com",
-    projectId: "heso-hrm",
-    storageBucket: "heso-hrm.firebasestorage.app",
-    messagingSenderId: "243212199762",
-    appId: "1:243212199762:web:a5ddddcd9236e525547c8b",
-    measurementId: "G-HGJZP0NJ77",
-  };
+  apiKey: "AIzaSyAggG-1W1QNtLz4S22tQM7sVts9Cvy2d7c",
+  authDomain: "safeguard-system-7f787.firebaseapp.com",
+  projectId: "safeguard-system-7f787",
+  storageBucket: "safeguard-system-7f787.firebasestorage.app",
+  messagingSenderId: "275626497484",
+  appId: "1:275626497484:web:edd5211315222d3ce53969"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
