@@ -4,6 +4,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AdminDashboard from './pages/dashboard/index.jsx';
 import LoginPage from './pages/login/index.jsx';
+import MaintenancePage from './pages/maintenance/index.jsx';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <AdminDashboard/>,
+  },
+
+  {
+    path: "/maintenance",
+    element: <MaintenancePage/>,
   },
 ]);
 
