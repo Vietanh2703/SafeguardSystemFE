@@ -36,6 +36,15 @@ const LoginPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value, 
+   
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -53,13 +62,12 @@ const LoginPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          Account: formData.username, // Kiểm tra xem backend có yêu cầu email thay vì username không
+          Account: formData.username,
           password: formData.password,
         }),
       });
   
-      console.log("Raw response:", response);
-  
+   
       const data = await response.json();
       console.log("Response data:", data);
   
@@ -67,11 +75,118 @@ const LoginPage = () => {
         throw new Error(data.message || "Login failed");
       }
   
-      console.log("Login successful:", data);
-      localStorage.setItem("token", data.token);
-      // window.location.href = "/dashboard"; // Chuyển hướng nếu cần
+      console.log("✅ Login successful:", data);
+      localStorage.setItem("token", data.result.accessToken); // Lưu token đúng vị trí
+  
+      // 🛠 Fix: Lấy role từ `data.result.role`
+      const role = data.result.role; 
+  
+      if (!role) {
+        console.error("❌ Lỗi: Không nhận được role từ backend!");
+        setErrors({ general: "Cannot retrieve role. Contact support!" });
+        setIsLoading(false);
+        return;
+      }
+  
+      console.log("🔍 Role nhận được:", role); // Debug
+  
+      // 🌟 Điều hướng theo role
+      switch (role.trim()) {
+        case "Business Partner":
+        case "BusinessPartner":
+          window.location.href = "/businesspartner";
+          break;
+        case "Security Guard":
+        case "SecurityGuard":
+          window.location.href = "/securityguard";
+          break;
+        case "Admin":
+          window.location.href = "/dashboard";
+          break;
+        case "Security Manager":
+        case "SecurityManager":
+          window.location.href = "/securitymanager";
+          break;
+        default:
+          console.error("❌ Unknown role:", role);
+          setErrors({ general: "Unknown role: " + role + ". Please contact support." });
+      }
     } catch (error) {
-      console.error("Login failed:", error.message);
+      console.error("❌ Login failed:", error.message);
+      setErrors({ general: error.message });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  const handleLoginGoogle = async () => {
+    console.log("🔹 Login with Google...");
+  
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const idToken = await result.user.getIdToken(); // Lấy idToken từ Firebase
+  
+      console.log("✅ User:", result.user);
+      console.log("🔑 ID Token:", idToken);
+  
+      // Gửi idToken lên backend để xác thực
+      const response = await fetch("https://localhost:7217/api/sign-in-google", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken }),
+      });
+  
+      const data = await response.json();
+      console.log("🖥 Server response:", data);
+  
+      // Kiểm tra phản hồi từ backend
+      if (!response.ok || !data.result) {
+        console.error("❌ Server error:", data.message);
+        setErrors({ general: data.message || "Login failed. Please try again!" });
+        setIsLoading(false);
+        return;
+      }
+  
+      const { AccessToken, RefreshToken, Email, FullName, role } = data.result;
+  
+      if (!role) {
+        console.error("❌ Lỗi: Không nhận được role từ backend!");
+        setErrors({ general: "Cannot retrieve role. Contact support!" });
+        setIsLoading(false);
+        return;
+      }
+  
+      console.log("🔍 Role nhận được:", role);
+  
+      // Lưu thông tin vào localStorage (hoặc context API)
+      localStorage.setItem("accessToken", AccessToken);
+      localStorage.setItem("refreshToken", RefreshToken);
+      localStorage.setItem("userEmail", Email);
+      localStorage.setItem("userFullName", FullName);
+      localStorage.setItem("userRole", role);
+  
+      // 🌟 Điều hướng theo role
+      const roleRoutes = {
+        "Business Partner": "/businesspartner",
+        "BusinessPartner": "/businesspartner",
+        "Security Guard": "/securityguard",
+        "SecurityGuard": "/securityguard",
+        "Admin": "/dashboard",
+        "Security Manager": "/securitymanager",
+        "SecurityManager": "/securitymanager",
+      };
+  
+      const redirectUrl = roleRoutes[role.trim()] || null;
+  
+      if (redirectUrl) {
+        window.location.href = redirectUrl;
+      } else {
+        console.error("❌ Unknown role:", role);
+        setErrors({ general: `Unknown role: ${role}. Please contact support.` });
+      }
+    } catch (error) {
+      console.error("❌ Login failed:", error.message);
       setErrors({ general: error.message });
     } finally {
       setIsLoading(false);
@@ -80,45 +195,11 @@ const LoginPage = () => {
   
   
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value, 
-   
-    }));
-  };
 
 
  
-  const handleLoginGoogle = async () => {
-    console.log("Login with Google...");
   
-    const provider = new GoogleAuthProvider();
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const idToken = await result.user.getIdToken(); // Lấy idToken từ Firebase
   
-      console.log("User:", result.user);
-      console.log("ID Token:", idToken);
-  
-      // Gửi idToken lên backend để xác thực
-      const response = await fetch("https://localhost:7217/api/login/signin-google", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ idToken }), // Gửi idToken lên backend
-      });
-  
-      const data = await response.json();
-      console.log("Server response:", data);
-  
-    } catch (error) {
-      console.error("Google login error:", error.message);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
