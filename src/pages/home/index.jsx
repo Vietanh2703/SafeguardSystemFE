@@ -19,14 +19,14 @@ const HomePage = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <img
-                src="https://images.unsplash.com/photo-1563396983906-b3795482a59a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8bG9nb3x8fHx8fDE3MDcxMzQyODc&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
+                src="https://png.pngtree.com/png-clipart/20200701/original/pngtree-security-personnel-png-image_5402327.jpg"
                 alt="Company Logo"
                 className="h-10 w-auto"
                 onError={(e) => {
                   e.target.src = "https://via.placeholder.com/150?text=Logo";
                 }}
               />
-              <span className="text-xl font-bold text-gray-800">CompanyName</span>
+              <span className="text-xl font-bold text-gray-800">SafeguardSystem</span>
             </div>
             <div className="relative">
               <AuthButtonLogin
