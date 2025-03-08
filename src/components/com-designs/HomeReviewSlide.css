@@ -1,0 +1,26 @@
+.slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    position: relative;
+    transition: background-color 0.3s;
+    padding-bottom: 0; /* Remove bottom padding */
+}
+
+.slide:nth-child(odd) {
+    background: #f0f0f0;
+}
+
+.slide h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.slide p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    text-align: center;
+}

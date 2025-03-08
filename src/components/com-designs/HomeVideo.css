@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:wght@700&display=swap');
+
+.video-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 2rem; /* Add margin to separate sections */
+}
+
+.artistic-font {
+    font-family: 'Big Shoulders Inline', cursive;
+    font-size: 6rem; /* Adjust the size as needed */
+    text-align: right;
+}
+
+.text-container {
+    position: absolute;
+    right: 2rem; /* Adjust the right margin as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}

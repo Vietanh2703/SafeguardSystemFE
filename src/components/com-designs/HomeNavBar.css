@@ -1,0 +1,121 @@
+/* src/components/com-designs/NavBar.css */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:wght@700&display=swap');
+
+.home-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: transparent;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.home-navbar-logo .logo-text {
+    font-family: 'Big Shoulders Inline', cursive;
+    font-size: 3rem; /* Adjust the size as needed */
+    color: white; /* Adjust the color as needed */
+}
+
+.home-navbar-logo img {
+    height: 60px;
+}
+
+.home-navbar-search {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+}
+
+.home-navbar-search input {
+    width: 70%; /* Increase the width */
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Reduce the border radius */
+    font-size: 1rem;
+    color: #cccccc;
+}
+
+.home-navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+
+.home-navbar-menu li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1.25rem;
+    transition: color 0.3s;
+}
+
+.home-navbar-menu li a:hover {
+    color: #007BFF;
+}
+
+.home-navbar-login a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    border: 1px solid white;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.home-navbar-login a:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+.home-search-button {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.home-search-button:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+.home-navbar-search {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2rem;
+}
+
+.home-navbar-search input {
+    width: 70%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px 0 0 10px; /* Adjust border radius */
+    font-size: 1rem;
+    color: #cccccc;
+}
+
+.home-search-button:hover svg {
+    color: white;
+}
+
+.home-search-button svg {
+    font-size: 1rem;
+    color: #333;
+}

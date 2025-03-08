@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:wght@700&display=swap');
+
+.artistic-font {
+    font-family: 'Big Shoulders Inline', cursive;
+    font-size: 6rem; /* Adjust the size as needed */
+    text-align: right;
+}
+
+.text-container {
+    position: absolute;
+    right: 2rem; /* Adjust the right margin as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+/* Navbar color change on scroll */
+.home-navbar.scrolled {
+    background-color: #4b0082; /* Indigo */
+    background-image: linear-gradient(to right, #4b0082, #000000);
+}
