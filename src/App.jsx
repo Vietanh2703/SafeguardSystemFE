@@ -10,8 +10,6 @@ import ProfilePage from "./pages/UserProfilePage.jsx";
 import Error from "./pages/ErrorPage.jsx";
 import withLoading from './components/WithLoading.jsx';
 import { ToastContainer } from "react-toastify";
-import api from "./utils/api.js";
-import {useEffect} from "react";
 
 const HomePageWithLoading = withLoading(HomePage);
 const LoginPageWithLoading = withLoading(LoginPage);
@@ -24,15 +22,6 @@ const ManagerWithLoading = withLoading(Manager);
 
 function App() {
     console.log("App component rendered");
-    useEffect(() => {
-        api.get('https://localhost:7217')
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }, []);
     return (
         <Router>
             <div>

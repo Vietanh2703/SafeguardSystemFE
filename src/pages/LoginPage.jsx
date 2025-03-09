@@ -209,7 +209,6 @@ const LoginPage = () => {
 
       if (redirectUrl) {
         localStorage.setItem("login_success", "true");
-        toast.success("Login successful!");
         navigate(redirectUrl);
       } else {
         toast.error("Unknown role: " + role + ". Please contact support.");
