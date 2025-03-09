@@ -55,7 +55,7 @@ const UserProfile = () => {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p className="text-red-500">Error: {error}</p>;
-
+    console.log("userInfo", userInfo);
     return (
         <div className="p-4">
             <div className="text-sm text-gray-500">Username</div>
