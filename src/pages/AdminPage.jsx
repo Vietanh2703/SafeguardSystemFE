@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import AdminSideBar from '../components/admin/AdminSideBar';
+import AdminSideBar from '../components/sidebar/AdminSideBar';
 import NavBar from '../components/NavBar.jsx';
 import '../designs/AdminPage.css';
 

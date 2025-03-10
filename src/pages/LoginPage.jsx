@@ -202,13 +202,15 @@ const LoginPage = () => {
 
       const roleRoutes = {
         "Admin": "/admin",
-        "Manager": "/manager"
+        "Manager": "/manager",
+        "Business Partner": "/businesspartner",
       };
 
       const redirectUrl = roleRoutes[role.trim()] || null;
 
       if (redirectUrl) {
         localStorage.setItem("login_success", "true");
+        toast.success("Login successful!");
         navigate(redirectUrl);
       } else {
         toast.error("Unknown role: " + role + ". Please contact support.");

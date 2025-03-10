@@ -22,7 +22,9 @@ const HomeNavBar = () => {
     return (
         <nav className={`home-navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="home-navbar-logo">
-                <span className="logo-text">MyGuard</span>
+                <a href="/">
+                    <span className="logo-text">MyGuard</span>
+                </a>
             </div>
             <div className="home-navbar-search">
                 <input type="text" placeholder="Search..." />

@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaBell, FaSun, FaMoon, FaSearch } from 'react-icons/fa';
 import './com-designs/NavBar.css';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-// eslint-disable-next-line react/prop-types
 const NavBar = ({ isDarkMode, toggleDarkMode, activeMenuLabel }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+    const [userAvatar, setUserAvatar] = useState('');
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
@@ -26,10 +27,7 @@ const NavBar = ({ isDarkMode, toggleDarkMode, activeMenuLabel }) => {
     };
 
     const confirmLogout = () => {
-        // Clear session storage
         sessionStorage.clear();
-
-        // Redirect to the login page
         window.location.href = '/';
     };
 
@@ -38,6 +36,26 @@ const NavBar = ({ isDarkMode, toggleDarkMode, activeMenuLabel }) => {
     const handleUserSettingsClick = () => {
         navigate(`/profile/${localStorage.getItem("userId")}`);
     };
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const userId = localStorage.getItem("userId");
+                const token = localStorage.getItem("accessToken");
+
+                if (userId && token) {
+                    const response = await axios.get(`https://localhost:7217/get-user-details/${userId}`, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    setUserAvatar(response.data.avatar);
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+
+        fetchUserData();
+    }, []);
 
     return (
         <>
@@ -60,7 +78,7 @@ const NavBar = ({ isDarkMode, toggleDarkMode, activeMenuLabel }) => {
                     </button>
                     <div className="avatar-dropdown">
                         <button className="icon-button" onClick={toggleDropdown}>
-                            <img src="/path/to/avatar.jpg" alt="User Avatar" className="avatar" />
+                            <img src={userAvatar} alt="User Avatar" className="avatar" />
                         </button>
                         {dropdownOpen && (
                             <div className="dropdown-menu">

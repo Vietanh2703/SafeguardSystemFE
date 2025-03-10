@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:wght@700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100;400;700&display=swap');
 .artistic-font {
-    font-family: 'Big Shoulders Inline', cursive;
-    font-size: 6rem; /* Adjust the size as needed */
+    font-family: 'Big Shoulders Display', sans-serif; /* Adjust the size as needed */
     text-align: right;
 }
 

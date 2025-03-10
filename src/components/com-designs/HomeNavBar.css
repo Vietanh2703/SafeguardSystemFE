@@ -1,5 +1,5 @@
 /* src/components/com-designs/NavBar.css */
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100;400;700&display=swap');
 
 .home-navbar {
     display: flex;
@@ -15,7 +15,7 @@
 
 
 .home-navbar-logo .logo-text {
-    font-family: 'Big Shoulders Inline', cursive;
+    font-family: 'Big Shoulders Display', sans-serif;
     font-size: 3rem; /* Adjust the size as needed */
     color: white; /* Adjust the color as needed */
 }

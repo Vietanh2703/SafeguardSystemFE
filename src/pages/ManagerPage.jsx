@@ -1,135 +1,55 @@
-import { useState } from "react";
-import { FiHome, FiUsers, FiPieChart, FiSettings, FiUser, FiBell, FiMenu, FiLogOut } from "react-icons/fi";
+import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ManagerSideBar from '../components/sidebar/ManagerSideBar.jsx';
+import NavBar from '../components/NavBar.jsx';
+import '../designs/ManagerPage.css';
 
-const securitymanager = () => {
- const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [activeMenu, setActiveMenu] = useState("dashboard");
-  const [notifications] = useState(3);
+const ManagerPage = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [activeMenu, setActiveMenu] = useState('dashboard');
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const menuItems = [
-    { id: "dashboard", label: "Dashboard", icon: FiHome },
-    { id: "settings", label: "Settings", icon: FiSettings },
-    { id: "profile", label: "Profile", icon: FiUser }
-  ];
+    const menuItems = {
+        dashboard: 'Dashboard',
+        user: 'User',
+        calendar: 'Calendar',
+        'business-partner': 'Business Partner',
+        report: 'Report',
+        contract: 'Contract'
+    };
 
-  const renderContent = () => {
+    useEffect(() => {
+        if (localStorage.getItem("login_success") === "true") {
+            toast.success("Login successful!");
+            localStorage.removeItem("login_success"); // Remove to avoid showing after refresh
+        }
+    }, []);
+
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+    };
+
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Security Statistics</h2>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-blue-50 rounded-lg">
-              <p className="text-sm text-gray-600">Total Securities</p>
-              <p className="text-2xl font-bold text-blue-600">1,234</p>
-            </div>
-            <div className="p-4 bg-green-50 rounded-lg">
-              <p className="text-sm text-gray-600">Total Teams</p>
-              <p className="text-2xl font-bold text-green-600">892</p>
-            </div>
-            <div className="p-4 bg-purple-50 rounded-lg">
-              <p className="text-sm text-gray-600">Attendant</p>
-              <p className="text-2xl font-bold text-purple-600">45</p>
-            </div>
-            <div className="p-4 bg-yellow-50 rounded-lg">
-              <p className="text-sm text-gray-600">Reports</p>
-              <p className="text-2xl font-bold text-yellow-600">28</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold mb-4">Create Schedule for Security</h2>
-        
-        </div>
-      </div>
-    );
-  };
-
-  return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside
-        className={`${isSidebarOpen ? "w-64" : "w-20"} bg-white shadow-lg transition-all duration-300 ease-in-out`}
-      >
-        <div className="flex items-center justify-between p-4 border-b">
-          <img
-            src="https://images.unsplash.com/photo-1517230878791-4d28214057c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=50&q=80"
-            alt="Logo"
-            className="h-8 w-8 rounded"
-          />
-          {isSidebarOpen && <span className="font-semibold text-xl">Security Manager</span>}
-        </div>
-        <nav className="mt-6">
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveMenu(item.id)}
-              className={`w-full flex items-center p-4 hover:bg-gray-100 transition-colors ${activeMenu === item.id ? "bg-blue-50 text-blue-600" : "text-gray-600"}`}
-              aria-label={item.label}
-            >
-              <item.icon className="h-5 w-5" />
-              {isSidebarOpen && (
-                <span className="ml-4 font-medium">{item.label}</span>
-              )}
-            </button>
-          ))}
-        </nav>
-      </aside>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <header className="bg-white shadow-sm">
-          <div className="flex items-center justify-between p-4">
-            <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-              aria-label="Toggle Sidebar"
-            >
-              <FiMenu className="h-6 w-6 text-gray-600" />
-            </button>
-
-            <div className="flex items-center space-x-4">
-              <button
-                className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 relative"
-                aria-label="Notifications"
-              >
-                <FiBell className="h-6 w-6 text-gray-600" />
-                {notifications > 0 && (
-                  <span className="absolute top-0 right-0 h-4 w-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
-                    {notifications}
-                  </span>
-                )}
-              </button>
-
-              <div className="flex items-center space-x-2">
-                <img
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=32&q=80"
-                  alt="Profile"
-                  className="h-8 w-8 rounded-full"
+        <div className={`min-h-screen flex flex-col ${isDarkMode ? 'dark' : ''}`}>
+            <ToastContainer />
+            <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} activeMenuLabel={menuItems[activeMenu]} />
+            <div className="flex flex-1">
+                <ManagerSideBar
+                    isSidebarOpen={isSidebarOpen}
+                    setActiveMenu={setActiveMenu}
+                    activeMenu={activeMenu}
                 />
-                {isSidebarOpen && (
-                  <span className="font-medium text-gray-700">John Doe</span>
-                )}
-              </div>
-
-              <button
-                className="p-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-                aria-label="Logout"
-              >
-                <FiLogOut className="h-6 w-6 text-gray-600" />
-              </button>
+                <div className="flex-1 p-8 bg-gray-100 content-container">
+                    <h1 className="text-4xl font-bold text-gray-800 mb-4">Manager page</h1>
+                    <p className="text-lg text-gray-600 mb-8">
+                        Welcome to manager page.
+                    </p>
+                    {/* Add other components or content for the AdminPage here */}
+                </div>
             </div>
-          </div>
-        </header>
-
-        {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto bg-gray-50 p-6">
-          {renderContent()}
-        </main>
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
-    export default securitymanager;
+
+export default ManagerPage;
