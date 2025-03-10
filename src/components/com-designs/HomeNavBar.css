@@ -20,6 +20,12 @@
     color: white; /* Adjust the color as needed */
 }
 
+.home-navbar-logo .logo-text:hover {
+    background: linear-gradient(45deg, #1E90FF, #FFD700, #FFFFFF);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
 .home-navbar-logo img {
     height: 60px;
 }
@@ -57,7 +63,9 @@
 }
 
 .home-navbar-menu li a:hover {
-    color: #007BFF;
+    background: linear-gradient(45deg, #1E90FF, #FFD700, #FFFFFF);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 .home-navbar-login a {
@@ -72,7 +80,7 @@
 }
 
 .home-navbar-login a:hover {
-    background-color: #007BFF;
+    background: linear-gradient(45deg, #1E90FF, #FFD700, #FFFFFF);
     color: white;
 }
 
@@ -90,7 +98,7 @@
 }
 
 .home-search-button:hover {
-    background-color: #007BFF;
+    background: linear-gradient(45deg, #1E90FF, #FFD700, #FFFFFF);
     color: white;
 }
 

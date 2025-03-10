@@ -6,17 +6,19 @@ import PackagesSlide from '../components/home/HomePackageSlide';
 import ReviewsSlide from '../components/home/HomeReviewPage.jsx';
 import Footer from '../components/home/Footer.jsx';
 import '../components/com-designs/HomeNavBar.css';
-import '../designs/HomePage.css'; // Import the new CSS file
+import '../designs/HomePage.css';
+import BackToTopButton from "../components/BackToTopButton.jsx"; // Import the new CSS file
 
 const HomePage = () => {
     return (
         <div>
             <HomeNavBar />
-            <VideoSection />
+            <VideoSection id="video" />
             <ServicesSlide />
             <PackagesSlide />
             <ReviewsSlide />
             <Footer />
+            <BackToTopButton />
         </div>
     );
 };
