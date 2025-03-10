@@ -8,7 +8,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: width 0.3s ease-in-out;
     padding: 40px 20px; /* Increase padding to push content down */
-    margin-top: 60px;
+    margin-top: 40px;
     z-index: 900; /* Ensure it stays above the content */
 }
 .sidebar-section {

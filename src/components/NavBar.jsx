@@ -30,7 +30,7 @@ const NavBar = ({ isDarkMode, toggleDarkMode, activeMenuLabel }) => {
         sessionStorage.clear();
 
         // Redirect to the login page
-        window.location.href = '/login';
+        window.location.href = '/';
     };
 
     const navigate = useNavigate();
