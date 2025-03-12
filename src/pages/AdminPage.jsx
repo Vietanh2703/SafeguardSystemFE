@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';  // Import thêm useNavigate để chuyển trang
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminSideBar from '../components/sidebar/AdminSideBar';
@@ -9,6 +11,8 @@ const AdminPage = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [activeMenu, setActiveMenu] = useState('dashboard');
     const [isDarkMode, setIsDarkMode] = useState(false);
+
+    const navigate = useNavigate();
 
     const menuItems = {
         dashboard: 'Dashboard',
@@ -22,9 +26,14 @@ const AdminPage = () => {
     useEffect(() => {
         if (localStorage.getItem("login_success") === "true") {
             toast.success("Login successful!");
-            localStorage.removeItem("login_success"); // Remove to avoid showing after refresh
+            localStorage.removeItem("login_success");
         }
-    }, []);
+
+        // Điều hướng đến trang User List nếu chọn menu "User"
+        if (activeMenu === 'user') {
+            navigate('/users');
+        }
+    }, [activeMenu]);
 
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
@@ -45,7 +54,6 @@ const AdminPage = () => {
                     <p className="text-lg text-gray-600 mb-8">
                         Welcome to the admin dashboard. Here you can manage all the administrative tasks.
                     </p>
-                    {/* Add other components or content for the AdminPage here */}
                 </div>
             </div>
         </div>

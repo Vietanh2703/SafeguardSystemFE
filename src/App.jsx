@@ -13,6 +13,15 @@ import { ToastContainer } from "react-toastify";
 import api from "./utils/api.js";
 import {useEffect} from "react";
 
+
+import UserListPage from './pages/UserListPage.jsx';
+
+import ViewDetailUserPage from './pages/ViewDetailUserPage.jsx';
+
+import CreateUserPage from './pages/createuser.jsx';
+
+
+
 const HomePageWithLoading = withLoading(HomePage);
 const LoginPageWithLoading = withLoading(LoginPage);
 const ProfilePageWithLoading = withLoading(ProfilePage);
@@ -21,6 +30,9 @@ const ChangePasswordWithLoading = withLoading(ChangePassword);
 const AdminDashboardWithLoading = withLoading(AdminDashboard);
 const BusinessPartnerWithLoading = withLoading(BusinessPartner);
 const ManagerWithLoading = withLoading(Manager);
+const UserListPageWithLoading = withLoading(UserListPage);
+
+
 
 function App() {
     console.log("App component rendered");
@@ -33,6 +45,7 @@ function App() {
                 console.error(error);
             });
     }, []);
+
     return (
         <Router>
             <div>
@@ -45,7 +58,11 @@ function App() {
                     <Route path="/admin" element={<AdminDashboardWithLoading />} />
                     <Route path="/businesspartner" element={<BusinessPartnerWithLoading />} />
                     <Route path="/manager" element={<ManagerWithLoading />} />
-                    <Route path={"/profile/:userId"} element={<ProfilePageWithLoading />} />
+                    <Route path="/users" element={<UserListPageWithLoading />} />
+                    <Route path="/user/:userId" element={<ProfilePageWithLoading />} />
+                    <Route path="/user/:email" element={<ViewDetailUserPage />} />
+                    <Route path="/createuser" element={<CreateUserPage />} />
+                
                 </Routes>
             </div>
         </Router>
