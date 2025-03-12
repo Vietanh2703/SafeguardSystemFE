@@ -11,7 +11,10 @@ import Error from "./pages/ErrorPage.jsx";
 import withLoading from './components/WithLoading.jsx';
 import { ToastContainer } from "react-toastify";
 import api from "./utils/api.js";
-import {useEffect} from "react";
+import { useEffect } from "react";
+import CheckPointBusiness from './components/businesspage/checkpoint.jsx';
+import TeamPageBusiness from './components/businesspage/teampage.jsx';
+import ShiftPageBusiness from './components/businesspage/shiftpage.jsx';
 
 const HomePageWithLoading = withLoading(HomePage);
 const LoginPageWithLoading = withLoading(LoginPage);
@@ -43,7 +46,11 @@ function App() {
                     <Route path="/error" element={<ErrorWithLoading />} />
                     <Route path="/login/change-password" element={<ChangePasswordWithLoading />} />
                     <Route path="/admin" element={<AdminDashboardWithLoading />} />
-                    <Route path="/businesspartner" element={<BusinessPartnerWithLoading />} />
+                    <Route path="/businesspartner" element={<BusinessPartnerWithLoading />} >
+                        <Route path="checkpoint" element={<CheckPointBusiness />} />
+                        <Route path="team" element={<TeamPageBusiness />} />
+                        <Route path="shifts" element={<ShiftPageBusiness />} />
+                    </Route>
                     <Route path="/manager" element={<ManagerWithLoading />} />
                     <Route path={"/profile/:userId"} element={<ProfilePageWithLoading />} />
                 </Routes>
