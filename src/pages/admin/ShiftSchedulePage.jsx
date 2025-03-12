@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
-import '../designs/BusinessPage.css';
+import '../../designs/BusinessPage.css';
 
 const ShiftSchedulePage = () => {
     const [shifts, setShifts] = useState([]);

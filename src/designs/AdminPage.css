@@ -6,3 +6,17 @@
     overflow-y: auto; /* Enable vertical scrolling */
     height: calc(100vh - 60px); /* Adjust height to fit within the viewport */
 }
+
+/* src/designs/AdminPage.css */
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

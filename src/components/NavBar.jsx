@@ -34,7 +34,7 @@ const NavBar = ({ isDarkMode, toggleDarkMode, activeMenuLabel }) => {
     const navigate = useNavigate();
 
     const handleUserSettingsClick = () => {
-        navigate(`/profile/${localStorage.getItem("userId")}`);
+        navigate(`/user/${localStorage.getItem("userId")}`);
     };
 
     useEffect(() => {
