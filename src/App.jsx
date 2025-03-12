@@ -16,9 +16,15 @@ import {useEffect} from "react";
 
 import UserListPage from './pages/UserListPage.jsx';
 
-import ViewDetailUserPage from './pages/ViewDetailUserPage.jsx';
+import CreateUserPage from './pages/createuser.jsx'; 
 
-import CreateUserPage from './pages/createuser.jsx';
+import UserDetailPage from './pages/UserDetailPage.jsx'; 
+
+import BusinessPartnersPage from './pages/viewbusinesspartner.jsx';
+
+import ShiftSchedulePage from './pages/ShiftSchedulePage.jsx';
+import LocationPage from './pages/viewlocation.jsx';
+import CreateLocation from './pages/CreateLocation.jsx';
 
 
 
@@ -57,11 +63,15 @@ function App() {
                     <Route path="/login/change-password" element={<ChangePasswordWithLoading />} />
                     <Route path="/admin" element={<AdminDashboardWithLoading />} />
                     <Route path="/businesspartner" element={<BusinessPartnerWithLoading />} />
+                    <Route path="/Schedule" element={<ShiftSchedulePage />} />
+                    <Route path="/viewbusinesspartner" element={<BusinessPartnersPage />} />  
+                    <Route path="/location" element={<LocationPage />} />         
+                    <Route path="/create-location" element={<CreateLocation />} />       
                     <Route path="/manager" element={<ManagerWithLoading />} />
                     <Route path="/users" element={<UserListPageWithLoading />} />
                     <Route path="/user/:userId" element={<ProfilePageWithLoading />} />
-                    <Route path="/user/:email" element={<ViewDetailUserPage />} />
-                    <Route path="/createuser" element={<CreateUserPage />} />
+                    <Route path="/createuser" element={<CreateUserPage />} /> 
+                    <Route path="/userdetail/:userId" element={<UserDetailPage />} />
                 
                 </Routes>
             </div>

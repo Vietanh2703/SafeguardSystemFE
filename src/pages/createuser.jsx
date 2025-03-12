@@ -49,6 +49,7 @@ const CreateUserPage = () => {
       const result = await response.json();
       if (result.isSuccess) {
         alert("User created successfully");
+         navigate("/users");
        
       } else {
         alert(result.message || "Failed to create user");
@@ -115,11 +116,19 @@ const CreateUserPage = () => {
           ))}
         </select>
         <button
-          type="submit"
-          className="bg-green-500 text-white px-4 py-2 rounded"
-        >
-          Create User
-        </button>
+  type="submit"
+  className="bg-green-500 text-white px-4 py-2 rounded mr-4"
+>
+  Create User
+</button>
+
+<button
+  type="button" 
+  className="bg-green-500 text-white px-4 py-2 rounded"
+  onClick={() => navigate("/users")}
+>
+  Go Back 
+</button>
       </form>
     </div>
   );

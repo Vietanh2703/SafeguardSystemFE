@@ -19,6 +19,7 @@ const AdminPage = () => {
         user: 'User',
         calendar: 'Calendar',
         'business-partner': 'Business Partner',
+        location: 'location',
         report: 'Report',
         contract: 'Contract'
     };
@@ -32,6 +33,12 @@ const AdminPage = () => {
         // Điều hướng đến trang User List nếu chọn menu "User"
         if (activeMenu === 'user') {
             navigate('/users');
+        }else if(activeMenu === 'business-partner'){
+            navigate('/viewbusinesspartner');
+        }else if(activeMenu === 'calendar'){
+            navigate('/Schedule');
+        }else if(activeMenu === 'location'){
+            navigate('/location');
         }
     }, [activeMenu]);
 
@@ -43,6 +50,7 @@ const AdminPage = () => {
         <div className={`min-h-screen flex flex-col ${isDarkMode ? 'dark' : ''}`}>
             <ToastContainer />
             <NavBar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} activeMenuLabel={menuItems[activeMenu]} />
+           
             <div className="flex flex-1">
                 <AdminSideBar
                     isSidebarOpen={isSidebarOpen}

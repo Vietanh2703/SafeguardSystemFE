@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaTachometerAlt, FaUser, FaCalendarAlt, FaHandshake, FaFileAlt, FaFileContract, FaQuestionCircle } from 'react-icons/fa';
 import '../com-designs/AdminSideBar.css'
+import { LiaAdSolid } from 'react-icons/lia';
+import { MdOutlineStop } from 'react-icons/md';
 
 // eslint-disable-next-line react/prop-types
 const AdminSideBar = ({ isSidebarOpen, setActiveMenu, activeMenu }) => {
@@ -9,6 +11,7 @@ const AdminSideBar = ({ isSidebarOpen, setActiveMenu, activeMenu }) => {
         { id: 'user', label: 'User', icon: FaUser, section: 'Utilities' },
         { id: 'calendar', label: 'Calendar', icon: FaCalendarAlt, section: 'Utilities' },
         { id: 'business-partner', label: 'Business Partner', icon: FaHandshake, section: 'Utilities' },
+        { id: 'location', label: 'Business location', icon: MdOutlineStop, section: 'Utilities' },
         { id: 'report', label: 'Report', icon: FaFileAlt, section: 'Utilities' },
         { id: 'contract', label: 'Contract', icon: FaFileContract, section: 'Utilities' },
     ];
