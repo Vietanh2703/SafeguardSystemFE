@@ -1,0 +1,67 @@
+/* src/components/com-designs/AdminSideBar.css */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease-in-out;
+    padding: 40px 20px; /* Increase padding to push content down */
+    margin-top: 20px;
+    z-index: 900; /* Ensure it stays above the content */
+}
+.sidebar-section {
+    margin-top: 12px; /* Reduced margin to bring sections closer */
+}
+.sidebar-section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4b5563;
+    padding: 1px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.sidebar-header span {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.sidebar-nav {
+    margin-top: 24px;
+}
+
+.sidebar-nav button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    color: #4b5563;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-nav button:hover {
+    background-color: #f3f4f6;
+}
+
+.sidebar-nav button.active {
+    background-color: #ebf8ff;
+    color: #2563eb;
+}
+
+.sidebar-nav button .icon {
+    height: 20px;
+    width: 20px;
+}
+
+.sidebar-nav button span {
+    margin-left: 16px;
+    font-size: 1rem;
+    font-weight: 500;
+}

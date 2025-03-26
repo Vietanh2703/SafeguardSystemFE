@@ -1,0 +1,7 @@
+.content-container {
+    margin-top: 100px; /* Adjust this value based on the height of your navbar */
+    margin-left: 256px; /* Adjust this value based on the width of your sidebar */
+    padding: 20px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: calc(100vh - 60px); /* Adjust height to fit within the viewport */
+}

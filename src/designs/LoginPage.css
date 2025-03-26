@@ -1,0 +1,48 @@
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-in {
+    animation: slide-in 1s ease-out forwards;
+}
+
+.animate-slide-out {
+    animation: slide-out 1s ease-out forwards;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.bg-cover {
+    background-size: cover;
+}
+
+.bg-center {
+    background-position: center;
+}
+
+/* src/designs/LoginPage.css */
+.otp-input {
+    width: 3rem;
+    height: 3rem;
+    margin: 0.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 0.5rem;
+    transition: border-color 0.3s;
+}
+
+.otp-input:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
