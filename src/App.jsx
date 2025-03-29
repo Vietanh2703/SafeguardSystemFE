@@ -11,7 +11,7 @@ import Error from "./pages/ErrorPage.jsx";
 import withLoading from './components/WithLoading.jsx';
 import { ToastContainer } from "react-toastify";
 import api from "./utils/api.js";
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 import AdminHomePage from "./pages/admin/AdminHomePage.jsx";
 import UserListPage from './pages/admin/UserListPage.jsx';
@@ -21,10 +21,13 @@ import BusinessPartnersPage from './pages/admin/viewbusinesspartner.jsx';
 
 import LocationPage from './pages/admin/viewlocation.jsx';
 import CreateLocation from './pages/admin/CreateLocation.jsx';
-import UserProfile from "./pages/UserProfilePage.jsx";    
-import ViewReport from "./pages/business/viewreport.jsx";   
-import ViewShift from "./pages/business/viewshift.jsx";         
-import ViewShiftSchedule from "./pages/business/viewshiftschedule.jsx";  
+import UserProfile from "./pages/UserProfilePage.jsx";
+import ViewReport from "./pages/business/viewreport.jsx";
+import ViewShift from "./pages/business/viewshift.jsx";
+import ViewShiftSchedule from "./pages/business/viewshiftschedule.jsx";
+import CheckPointBusiness from './components/businesspage/checkpoint.jsx';
+import TeamPageBusiness from './components/businesspage/teampage.jsx';
+import ShiftPageBusiness from './components/businesspage/shiftpage.jsx';
 
 
 const HomePageWithLoading = withLoading(HomePage);
@@ -60,28 +63,32 @@ function App() {
                     <Route path="/error" element={<ErrorWithLoading />} />
                     <Route path="/login/change-password" element={<ChangePasswordWithLoading />} />
                     <Route path="/admin" element={<AdminHomeWithLoading />} />
-                  
-                    <Route path="/businesspartner" element={<BusinessPartnerWithLoading />} />
-                  
-         
-                  
+
+                    <Route path="/businesspartner" element={<BusinessPartnerWithLoading />} >
+                        <Route path="checkpoint" element={<CheckPointBusiness />} />
+                        <Route path="team" element={<TeamPageBusiness />} />
+                        <Route path="shifts" element={<ShiftPageBusiness />} />
+                    </Route>
+
+
+
                     <Route path="/viewreport" element={<ViewReport />} />
-                    <Route path="/viewshift" element={<ViewShift />} /> 
+                    <Route path="/viewshift" element={<ViewShift />} />
                     <Route path="/viewshiftschedule" element={<ViewShiftSchedule />} />  z
-                  
-                  
-                    <Route path="/viewbusinesspartner" element={<BusinessPartnersPage />} />  
-                    <Route path="/location" element={<LocationPage />} />         
-                    <Route path="/create-location" element={<CreateLocation />} />       
+
+
+                    <Route path="/viewbusinesspartner" element={<BusinessPartnersPage />} />
+                    <Route path="/location" element={<LocationPage />} />
+                    <Route path="/create-location" element={<CreateLocation />} />
                     <Route path="/manager" element={<ManagerWithLoading />} />
                     <Route path="/admin/users" element={<UserListPage />} />
                     <Route path="/user/:userId" element={<ProfilePageWithLoading />} />
-                  
-                    <Route path="/createuser" element={<CreateUserPage />} /> 
+
+                    <Route path="/createuser" element={<CreateUserPage />} />
                     <Route path="/userdetail/:userId" element={<UserDetailPage />} />
                     <Route path="/update/:userId" element={<UserProfile />} />
-              
-                
+
+
                 </Routes>
             </div>
         </Router>
