@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaMapMarkerAlt, FaUsers, FaClock } from 'react-icons/fa';
+import { FaUsers, FaClock, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import '../com-designs/BusinessSideBar.css';
 import { Link } from 'react-router-dom';
 
@@ -7,8 +7,9 @@ import { Link } from 'react-router-dom';
 const BusinessSideBar = ({ isSidebarOpen, setActiveMenu, activeMenu }) => {
     const menuItems = [
         { id: 'checkpoint', label: <Link to={"checkpoint"}>Checkpoint</Link>, icon: FaMapMarkerAlt },
-        { id: 'team', label: <Link to={"team"}>View Team</Link>, icon: FaUsers },
-        { id: 'shifts', label: <Link to={"shifts"}>View Shifts</Link>, icon: FaClock }
+        { id: 'report', label: <Link to={"report"}>Report</Link>, icon: FaUsers }, // Giữ nguyên (biểu tượng người dùng phù hợp với báo cáo)
+        { id: 'locations', label: <Link to={"locations"}>Location</Link>, icon: FaMapMarkerAlt }, // Đổi sang icon bản đồ
+        { id: 'viewshiftschedule', label: <Link to={"viewshiftschedule"}>ShiftSchedule</Link>, icon: FaCalendarAlt } // Đổi sang icon lịch
     ];
 
     return (
@@ -18,7 +19,7 @@ const BusinessSideBar = ({ isSidebarOpen, setActiveMenu, activeMenu }) => {
             </div>
             <nav className="sidebar-nav">
                 <div className="sidebar-section">
-                    <h2 className="sidebar-section-title">Business</h2>
+                    <h2 className="sidebar-section-title">Business</h2> 
                     {menuItems.map((item) => (
                         <button
                             key={item.id}

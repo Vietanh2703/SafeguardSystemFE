@@ -26,7 +26,7 @@ function CheckPointBusiness() {
                 console.log("Checkpoints List:", response.data.result); // Kiểm tra danh sách checkpoints
                 setCheckpoints(response.data.result.map(cp => ({
                     ...cp,
-                    key: cp.checkpointid // Đảm bảo key đúng
+                    key: cp.checkpointId // Đảm bảo key đúng
                 })));
             } else {
                 toast.error('Failed to fetch checkpoints!');
@@ -61,7 +61,7 @@ function CheckPointBusiness() {
         try {
             if (editingCheckpoint) {
                 // Cập nhật checkpoint
-                const response = await axios.put(`${API_BASE_URL}/checkpoint?checkpointid=${editingCheckpoint.checkpointid}`, values);
+                const response = await axios.put(`${API_BASE_URL}/checkpoint?checkpointId=${editingCheckpoint.checkpointId}`, values);
                 if (response.data.isSuccess) {
                     toast.success('Checkpoint updated successfully!');
                 } else {
@@ -88,14 +88,14 @@ function CheckPointBusiness() {
 
     // Xóa checkpoint
     // Xóa checkpoint
-    const handleDelete = async (checkpointid) => {
-        if (!checkpointid) {
+    const handleDelete = async (checkpointId) => {
+        if (!checkpointId) {
             toast.error('Invalid checkpoint ID!');
             return;
         }
         setLoadingTable(true); // Hiển thị loading khi đang xóa
         try {
-            const response = await axios.delete(`${API_BASE_URL}/checkpoint/${checkpointid}`);
+            const response = await axios.delete(`${API_BASE_URL}/checkpoint/${checkpointId}`);
             console.log("Delete response:", response.data); // Debugging
             if (response.data.isSuccess) {
                 toast.success('Checkpoint deleted successfully!');
@@ -134,7 +134,7 @@ function CheckPointBusiness() {
                     </Button>
                     <Popconfirm
                         title="Are you sure to delete this checkpoint?"
-                        onConfirm={() => handleDelete(record.checkpointid)}
+                        onConfirm={() => handleDelete(record.checkpointId)}
                         okText="Yes"
                         cancelText="No"
                     >
@@ -154,7 +154,7 @@ function CheckPointBusiness() {
                 Create checkpoint
             </Button>
 
-            {loadingTable ? <Spin size="large" /> : <Table dataSource={checkpoints} columns={columns} rowKey="checkpointid" />}
+            {loadingTable ? <Spin size="large" /> : <Table dataSource={checkpoints} columns={columns} rowKey="checkpointId" />}
 
             <Modal
                 title={editingCheckpoint ? 'Edit Checkpoint' : 'Create Checkpoint'}

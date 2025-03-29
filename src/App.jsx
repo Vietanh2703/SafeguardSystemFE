@@ -22,13 +22,12 @@ import BusinessPartnersPage from './pages/admin/viewbusinesspartner.jsx';
 import LocationPage from './pages/admin/viewlocation.jsx';
 import CreateLocation from './pages/admin/CreateLocation.jsx';
 import UserProfile from "./pages/UserProfilePage.jsx";
-import ViewReport from "./pages/business/viewreport.jsx";
-import ViewShift from "./pages/business/viewshift.jsx";
-import ViewShiftSchedule from "./pages/business/viewshiftschedule.jsx";
+import ViewShiftSchedule from "./components/businesspage/viewshiftschedule.jsx";
 import CheckPointBusiness from './components/businesspage/checkpoint.jsx';
-import TeamPageBusiness from './components/businesspage/teampage.jsx';
-import ShiftPageBusiness from './components/businesspage/shiftpage.jsx';
-
+import ViewReports from './components/businesspage/report.jsx';
+import ShiftPageBusiness from './components/businesspage/shiftpage.jsx';  
+import ViewLocations from './components/businesspage/location.jsx';      
+import CreateLocationBusiness from './components/businesspage/CreateLocationBusiness.jsx'; 
 
 const HomePageWithLoading = withLoading(HomePage);
 const LoginPageWithLoading = withLoading(LoginPage);
@@ -66,15 +65,16 @@ function App() {
 
                     <Route path="/businesspartner" element={<BusinessPartnerWithLoading />} >
                         <Route path="checkpoint" element={<CheckPointBusiness />} />
-                        <Route path="team" element={<TeamPageBusiness />} />
-                        <Route path="shifts" element={<ShiftPageBusiness />} />
+                        <Route path="Report" element={<ViewReports />} />
+                        <Route path="locations" element={<ViewLocations />} /> 
+                        <Route path="viewshiftschedule" element={<ViewShiftSchedule />} />  z
+                   
                     </Route>
 
-
-
-                    <Route path="/viewreport" element={<ViewReport />} />
-                    <Route path="/viewshift" element={<ViewShift />} />
-                    <Route path="/viewshiftschedule" element={<ViewShiftSchedule />} />  z
+                    <Route path="/create-locationbusiness" element={<CreateLocationBusiness />} /> 
+                    <Route path="/shifts" element={<ShiftPageBusiness />} />  
+                 
+                 
 
 
                     <Route path="/viewbusinesspartner" element={<BusinessPartnersPage />} />
