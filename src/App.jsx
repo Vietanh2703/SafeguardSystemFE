@@ -18,10 +18,14 @@ import UserListPage from './pages/admin/UserListPage.jsx';
 import CreateUserPage from './pages/admin/CreateUserPage.jsx';
 import UserDetailPage from './pages/admin/UserDetailPage.jsx';
 import BusinessPartnersPage from './pages/admin/viewbusinesspartner.jsx';
-import ShiftSchedulePage from './pages/admin/ShiftSchedulePage.jsx';
+
 import LocationPage from './pages/admin/viewlocation.jsx';
 import CreateLocation from './pages/admin/CreateLocation.jsx';
-import UserProfile from "./pages/UserProfilePage.jsx";
+import UserProfile from "./pages/UserProfilePage.jsx";    
+import ViewReport from "./pages/business/viewreport.jsx";   
+import ViewShift from "./pages/business/viewshift.jsx";         
+import ViewShiftSchedule from "./pages/business/viewshiftschedule.jsx";  
+
 
 const HomePageWithLoading = withLoading(HomePage);
 const LoginPageWithLoading = withLoading(LoginPage);
@@ -59,9 +63,11 @@ function App() {
                   
                     <Route path="/businesspartner" element={<BusinessPartnerWithLoading />} />
                   
-                    <Route path="/schedule" element={<ShiftSchedulePage />} />
+         
                   
-                  
+                    <Route path="/viewreport" element={<ViewReport />} />
+                    <Route path="/viewshift" element={<ViewShift />} /> 
+                    <Route path="/viewshiftschedule" element={<ViewShiftSchedule />} />  z
                   
                   
                     <Route path="/viewbusinesspartner" element={<BusinessPartnersPage />} />  

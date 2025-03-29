@@ -6,11 +6,10 @@ import '../com-designs/BusinessSideBar.css'
 const BusinessSideBar = ({ isSidebarOpen, setActiveMenu, activeMenu }) => {
     const menuItems = [
         { id: 'dashboard', label: 'Dashboard', icon: FaTachometerAlt, section: 'Dashboard' },
-        { id: 'user', label: 'User', icon: FaUser, section: 'Utilities' },
-        { id: 'calendar', label: 'Calendar', icon: FaCalendarAlt, section: 'Utilities' },
-        { id: 'business-partner', label: 'Business Partner', icon: FaHandshake, section: 'Utilities' },
+        { id: 'viewshift', label: 'View Shift', icon: FaUser, section: 'Utilities' },
+        { id: 'checkpoint', label: 'Check Point', icon: FaCalendarAlt, section: 'Utilities' },
         { id: 'report', label: 'Report', icon: FaFileAlt, section: 'Utilities' },
-        { id: 'contract', label: 'Contract', icon: FaFileContract, section: 'Utilities' },
+      
     ];
 
     return (
